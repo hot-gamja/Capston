@@ -68,8 +68,8 @@
         }
         .nav-bar {
             height: 50px;
-            background-color: #e0e0e0);
-            color: blank;
+            background-color: #e0e0e0;
+            color: black;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -139,28 +139,29 @@
         <div id="map"></div>
     </div>
 
+    <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=YOUR_CLIENT_ID"></script>
     <script>
         let map;
 
         function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 36.5, lng: 127.5 }, // 한국 중심 좌표
+            map = new naver.maps.Map('map', {
+                center: new naver.maps.LatLng(36.5, 127.5), // 한국 중심 좌표
                 zoom: 7
             });
         }
 
         function moveToLocation(lat, lng, title) {
-            const location = new google.maps.LatLng(lat, lng);
+            const location = new naver.maps.LatLng(lat, lng);
             map.setCenter(location);
             map.setZoom(12);
 
-            const marker = new google.maps.Marker({
+            const marker = new naver.maps.Marker({
                 position: location,
                 map: map,
                 title: title
             });
 
-            const infoWindow = new google.maps.InfoWindow({
+            const infoWindow = new naver.maps.InfoWindow({
                 content: `<h3>${title}</h3><p>여기에 상세 정보를 입력하세요.</p>`
             });
 
@@ -182,7 +183,14 @@
             }
         }
 
+        function closeSubMenu(menuId) {
+            const menu = document.getElementById(menuId);
+            const allHeaders = document.querySelectorAll('.sidebar h3');
+            menu.style.display = "none";
+            allHeaders.forEach(h => h.classList.remove('active'));
+        }
+
+        window.onload = initMap;
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 </body>
 </html>
