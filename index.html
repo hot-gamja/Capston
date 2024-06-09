@@ -71,15 +71,18 @@
             background-color: #e0e0e0;
             color: black;
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* 중앙 정렬*/
             align-items: center;
             padding: 0 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border-bottom: 2px solid #ccc;
+            position relative;
         }
         .nav-bar h1 {
             margin: 0;
             font-size: 20px;
+            position: absolute;
+            left: 20px;
         }
         .search-container {
             display: flex;
@@ -102,7 +105,7 @@
         <h1>청약 정보</h1>
         <div class="search-container">
             <input type="text" placeholder="검색...">
-            <button>검색</button>
+            <button type="button">검색</button>
         </div>
     </div>
     <div class="container">
@@ -139,7 +142,7 @@
         <div id="map"></div>
     </div>
 
-    <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=YOUR_CLIENT_ID"></script>
+    <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wukhrnz577"></script>
     <script>
         let map;
 
@@ -189,6 +192,9 @@
             menu.style.display = "none";
             allHeaders.forEach(h => h.classList.remove('active'));
         }
+        document.querySelector('.search-container button').addEventListener('click', function()
+         { alert('공사중');});
+
 
         window.onload = initMap;
     </script>
